@@ -7,7 +7,7 @@
 2) Да се поддържа повече от един или всички (за „всички“ даваме много точки) формати на дати.
 
 <p><b> The first bonus condition is done. <br/> The second bonus condition - 
-it supports multiple and most common date formats.</b></p>
+it supports multiple and the most common date formats.</b></p>
 <p>Also added Javadoc to the code</p>
 
 <h2>Running the application</h2>
