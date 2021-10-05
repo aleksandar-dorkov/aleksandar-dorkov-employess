@@ -15,6 +15,7 @@ it supports multiple and most common date formats.</b></p>
 <li>Just run the app from Intellij and a window will open that will let you select a file anywhere from the system.</li>
 <li>The file has to be a text file (.txt)</li>
 <li>The application will do the rest.</li>
+<li><b>Requires Java 11!<b></li>
 </ul>
 
 <h2>About</h2>
