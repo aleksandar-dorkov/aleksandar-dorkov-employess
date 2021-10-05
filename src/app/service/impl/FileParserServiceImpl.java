@@ -40,8 +40,7 @@ public class FileParserServiceImpl implements FileParserService {
         return employees;
     }
 
-    @Override
-    public LocalDate stringToDate(String dateString) {
+    private LocalDate stringToDate(String dateString) {
         if (dateString.equalsIgnoreCase("null")) {
             return LocalDate.now();
         }

@@ -1,6 +1,5 @@
-package app.GUI;
+package app.ui;
 
-import app.model.Couple;
 import app.service.FileParserService;
 import app.service.SolutionLogicService;
 import app.service.impl.FileParserServiceImpl;
@@ -13,13 +12,12 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Comparator;
 
 public class ApplicationFrame extends JFrame implements ActionListener {
 
     private final FileParserService fileParserService = new FileParserServiceImpl();
     private final SolutionLogicService solutionLogicService = new SolutionLogicServiceImpl();
-    private final JButton button = ComponentFactory.newButton(this);
+    private final JButton button = UIComponentFactory.newButton(this);
 
     public ApplicationFrame() {
         super();
@@ -35,15 +33,14 @@ public class ApplicationFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
-            var fileChooser = ComponentFactory.newTxtJFileChooser();
+            var fileChooser = UIComponentFactory.newTxtJFileChooser();
             var response = fileChooser.showOpenDialog(null);//this will select file to open
             if (response == JFileChooser.APPROVE_OPTION) {
                 var employees = this.fileParserService.parseEmployees(fileChooser.getSelectedFile()
                         .getAbsolutePath());
                 var solution = this.solutionLogicService.findSolution(employees);
                 solution.sort((o1, o2) -> (int) (o2.getTotalDuration() - o1.getTotalDuration()));
-                System.out.println(solution.get(0));
-                ComponentFactory.newEmployeesGridFrame();
+                UIComponentFactory.newEmployeesGridFrame(SolutionLogicServiceImpl.COUPLES_FOR_DATA_GRID);
             }
         }
     }

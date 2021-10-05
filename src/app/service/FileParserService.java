@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface FileParserService {
 
+    /**
+     * @param path the absolute path to the file
+     * @return a list of the parsed employees from the file
+     */
     List<Employee> parseEmployees(String path);
-
-    LocalDate stringToDate(String dateString);
 }

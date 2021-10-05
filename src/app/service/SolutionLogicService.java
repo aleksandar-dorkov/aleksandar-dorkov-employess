@@ -7,5 +7,10 @@ import java.util.List;
 
 public interface SolutionLogicService {
 
-    List<Couple> findSolution(List<Employee> allRecords);
+
+    /**
+     * @param employees all the employees read from the file
+     * @return a list of couples containing emp1 and emp 2 ids and the total time they worked tougether
+     */
+    List<Couple> findSolution(List<Employee> employees);
 }

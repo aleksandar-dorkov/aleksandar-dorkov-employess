@@ -1,8 +1,8 @@
 package app.engine;
 
-import app.GUI.ApplicationFrame;
+import app.ui.ApplicationFrame;
 
-public class Engine implements Runnable{
+public class Engine implements Runnable {
 
     @Override
     public void run() {

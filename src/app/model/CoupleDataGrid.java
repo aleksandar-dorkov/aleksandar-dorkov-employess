@@ -1,18 +1,20 @@
 package app.model;
 
-public class Couple {
+public class CoupleDataGrid {
 
     private Long firstEmployeeId;
     private Long secondEmployeeId;
-    private Long totalDuration;
+    private Long projectId;
+    private Long daysWorked;
 
-    public Couple() {
+    public CoupleDataGrid() {
     }
 
-    public Couple(Long firstEmployeeId, Long secondEmployeeId, Long totalDuration) {
+    public CoupleDataGrid(Long firstEmployeeId, Long secondEmployeeId, Long projectId, Long daysWorked) {
         this.firstEmployeeId = firstEmployeeId;
         this.secondEmployeeId = secondEmployeeId;
-        this.totalDuration = totalDuration;
+        this.projectId = projectId;
+        this.daysWorked = daysWorked;
     }
 
     public Long getFirstEmployeeId() {
@@ -31,20 +33,29 @@ public class Couple {
         this.secondEmployeeId = secondEmployeeId;
     }
 
-    public Long getTotalDuration() {
-        return totalDuration;
+    public Long getProjectId() {
+        return projectId;
     }
 
-    public void setTotalDuration(Long totalDuration) {
-        this.totalDuration = totalDuration;
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
+    }
+
+    public Long getDaysWorked() {
+        return daysWorked;
+    }
+
+    public void setDaysWorked(Long daysWorked) {
+        this.daysWorked = daysWorked;
     }
 
     @Override
     public String toString() {
-        return "Team[" +
+        return "CoupleDataGrid[" +
                 "firstEmployeeId=" + firstEmployeeId +
                 ", secondEmployeeId=" + secondEmployeeId +
-                ", totalDuration=" + totalDuration +
+                ", projectId=" + projectId +
+                ", daysWorked=" + daysWorked +
                 ']';
     }
 }
