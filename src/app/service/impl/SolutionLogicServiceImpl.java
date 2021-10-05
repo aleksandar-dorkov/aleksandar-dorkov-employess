@@ -131,12 +131,16 @@ public class SolutionLogicServiceImpl implements SolutionLogicService {
 
     /**
      * @param couples a list of couples containing emp1 and emp 2 ids and the total time they worked together
-     * <p>Print the solution in the console.</p>
+     *                <p>Print the solution in the console.</p>
      */
     private void printSolution(List<Couple> couples) {
-        couples.sort((o1, o2) -> (int) (o2.getTotalDuration() - o1.getTotalDuration()));
-        var couple = couples.get(0);
-        System.out.printf("Solution: Employee ID #1: %s, Employee ID #2: %s. Days worked together: %s",
-                couple.getFirstEmployeeId(), couple.getSecondEmployeeId(), couple.getTotalDuration());
+        if (couples.size() <= 0) {
+            System.out.println("No solution found");
+        } else {
+            couples.sort((o1, o2) -> (int) (o2.getTotalDuration() - o1.getTotalDuration()));
+            var couple = couples.get(0);
+            System.out.printf("\nSolution: Employee ID #1: %s, Employee ID #2: %s. Days worked together: %s\n",
+                    couple.getFirstEmployeeId(), couple.getSecondEmployeeId(), couple.getTotalDuration());
+        }
     }
 }

@@ -38,6 +38,10 @@ public class ApplicationFrame extends JFrame implements ActionListener {
             if (response == JFileChooser.APPROVE_OPTION) {
                 var employees = this.fileParserService.parseEmployees(fileChooser.getSelectedFile()
                         .getAbsolutePath());
+                if (employees.size() <= 0) {
+                    System.out.println("Empty or Invalid text file");
+                    return;
+                }
                 this.solutionLogicService.findSolution(employees);
                 UIComponentFactory.newEmployeesGridFrame(SolutionLogicServiceImpl.COUPLES_FOR_DATA_GRID);
             }
