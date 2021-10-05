@@ -18,7 +18,7 @@ it supports multiple and the most common date formats.</b></p>
 <li><b>Requires Java 11!<b></li>
 </ul>
 
-<h2>About</h2>
+<h2>About the author</h2>
 <h3>
 <a href="https://aleksander-dorkov.netlify.app/" target="_blank">Personal Website/Portfolio</a>
 </h3>
