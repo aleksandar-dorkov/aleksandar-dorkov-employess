@@ -1,7 +1,10 @@
 package app.GUI;
 
-import app.logic.FileParser;
-import app.logic.Solution;
+import app.model.Couple;
+import app.service.FileParserService;
+import app.service.SolutionLogicService;
+import app.service.impl.FileParserServiceImpl;
+import app.service.impl.SolutionLogicServiceImpl;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -10,9 +13,12 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Comparator;
 
 public class ApplicationFrame extends JFrame implements ActionListener {
 
+    private final FileParserService fileParserService = new FileParserServiceImpl();
+    private final SolutionLogicService solutionLogicService = new SolutionLogicServiceImpl();
     private final JButton button = ComponentFactory.newButton(this);
 
     public ApplicationFrame() {
@@ -32,11 +38,12 @@ public class ApplicationFrame extends JFrame implements ActionListener {
             var fileChooser = ComponentFactory.newTxtJFileChooser();
             var response = fileChooser.showOpenDialog(null);//this will select file to open
             if (response == JFileChooser.APPROVE_OPTION) {
-                var employees = FileParser.parseEmployees(fileChooser.getSelectedFile()
+                var employees = this.fileParserService.parseEmployees(fileChooser.getSelectedFile()
                         .getAbsolutePath());
-                var solution = Solution.findSolution(employees);
-                solution.forEach(System.out::println);
-                System.out.println(solution);
+                var solution = this.solutionLogicService.findSolution(employees);
+                solution.sort((o1, o2) -> (int) (o2.getTotalDuration() - o1.getTotalDuration()));
+                System.out.println(solution.get(0));
+                ComponentFactory.newEmployeesGridFrame();
             }
         }
     }

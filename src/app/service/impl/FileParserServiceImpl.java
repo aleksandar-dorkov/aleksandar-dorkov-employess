@@ -1,6 +1,7 @@
-package app.logic;
+package app.service.impl;
 
 import app.model.Employee;
+import app.service.FileParserService;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,11 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FileParser {
+public class FileParserServiceImpl implements FileParserService {
 
-    private final static List<String> POSSIBLE_FORMATS = Arrays.asList("yyyy-MM-dd", "dd/MM/yyyy", "dd-MM-yyyy", "M/y", "M/d/y", "M-d-y");
+    private final List<String> POSSIBLE_FORMATS = Arrays.asList("yyyy-MM-dd", "dd/MM/yyyy", "dd-MM-yyyy", "M/y", "M/d/y", "M-d-y");
 
-    public static List<Employee> parseEmployees(String path) {
+    @Override
+    public List<Employee> parseEmployees(String path) {
         var employees = new ArrayList<Employee>();
         var file = new File(path);
         try {
@@ -38,7 +40,8 @@ public class FileParser {
         return employees;
     }
 
-    public static LocalDate stringToDate(String dateString) {
+    @Override
+    public LocalDate stringToDate(String dateString) {
         if (dateString.equalsIgnoreCase("null")) {
             return LocalDate.now();
         }

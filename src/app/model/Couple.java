@@ -38,9 +38,11 @@ public class Couple {
     public void setTotalDuration(Long totalDuration) {
         this.totalDuration = totalDuration;
     }
+
     public void addOverlapDuration(long overlap) {
         this.totalDuration += overlap;
     }
+
     @Override
     public String toString() {
         return "Team[" +

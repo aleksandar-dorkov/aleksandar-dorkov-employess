@@ -1,8 +1,9 @@
-import app.GUI.ApplicationFrame;
+import app.engine.Engine;
 
 public class Start {
 
     public static void main(String[] args) {
-        new ApplicationFrame();
+        var engine = new Engine();
+        engine.run();
     }
 }
