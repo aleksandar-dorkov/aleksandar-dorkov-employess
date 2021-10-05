@@ -16,7 +16,7 @@ import java.util.List;
 
 public class FileParserServiceImpl implements FileParserService {
 
-    private final List<String> POSSIBLE_FORMATS = Arrays.asList("yyyy-MM-dd", "dd/MM/yyyy", "dd-MM-yyyy", "M/y", "M/d/y", "M-d-y");
+    private static final List<String> POSSIBLE_FORMATS = Arrays.asList("yyyy-MM-dd", "dd/MM/yyyy", "dd-MM-yyyy", "MM-dd-yyyy", "M/y", "M/d/y", "M-d-y");
 
     @Override
     public List<Employee> parseEmployees(String path) {
@@ -34,6 +34,7 @@ public class FileParserServiceImpl implements FileParserService {
                 employee.setDateTo(stringToDate(lineData[3].trim()));
                 employees.add(employee);
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -15,7 +15,7 @@ public class SolutionLogicServiceImpl implements SolutionLogicService {
     private final List<Couple> COUPLES = new ArrayList<>();
 
     @Override
-    public List<Couple> findSolution(List<Employee> employees) {
+    public void findSolution(List<Employee> employees) {
         COUPLES_FOR_DATA_GRID.clear();
         for (int i = 0; i < employees.size() - 1; i++) {
             for (int j = i + 1; j < employees.size(); j++) {
@@ -32,7 +32,7 @@ public class SolutionLogicServiceImpl implements SolutionLogicService {
                 }
             }
         }
-        return COUPLES;
+        this.printSolution(COUPLES);
     }
 
 
@@ -49,8 +49,7 @@ public class SolutionLogicServiceImpl implements SolutionLogicService {
     /**
      * @param firstEmp  the first Employee
      * @param secondEmp the second Employee
-     * @return
-     * <b>true</b> if firstEmp.dateFrom is before or equal to secondEmp.dateTo
+     * @return <b>true</b> if firstEmp.dateFrom is before or equal to secondEmp.dateTo
      * or
      * if firstEmp.dateTo is after or equal to secondEmp.dateTo
      * <br/>
@@ -78,16 +77,16 @@ public class SolutionLogicServiceImpl implements SolutionLogicService {
                 .isBefore(secondEmp.getDateFrom()) ? secondEmp.getDateFrom() : firstEmp.getDateFrom();
         var periodEndDate = firstEmp.getDateTo()
                 .isBefore(secondEmp.getDateTo()) ? firstEmp.getDateTo() : secondEmp.getDateTo();
-        return Math.abs(ChronoUnit.DAYS.between(periodStartDate, periodEndDate));
+        return Math.abs(ChronoUnit.DAYS.between(periodStartDate, periodEndDate)) + 1;
     }
 
     /**
-     * @param couples the List that the caller method is supposed to return
-     * @param firstEmp the first Employee
-     * @param secondEmp the second Employee
+     * @param couples     the List that the caller method is supposed to return
+     * @param firstEmp    the first Employee
+     * @param secondEmp   the second Employee
      * @param overlapDays the time the 2 employees worked together in days
-     * <br/>
-     * add a new Couple to the collection that the caller method is supposed to return.
+     *                    <br/>
+     *                    add a new Couple to the collection that the caller method is supposed to return.
      */
     private void updateCouples(List<Couple> couples, Employee firstEmp, Employee secondEmp, long overlapDays) {
         var isPresent = false;
@@ -114,10 +113,10 @@ public class SolutionLogicServiceImpl implements SolutionLogicService {
     }
 
     /**
-     * @param firstEmp the first Employee
-     * @param secondEmp the second Employee
+     * @param firstEmp    the first Employee
+     * @param secondEmp   the second Employee
      * @param overlapDays the time the 2 employees worked together in days
-     * populates the array needed for the data-grid
+     *                    populates the array needed for the data-grid
      */
     private void addToCouplesForDataGrid(Employee firstEmp, Employee secondEmp, long overlapDays) {
         var dataGridCouple = new CoupleDataGrid();
@@ -127,5 +126,17 @@ public class SolutionLogicServiceImpl implements SolutionLogicService {
         dataGridCouple.setDaysWorked(overlapDays);
         COUPLES_FOR_DATA_GRID.add(dataGridCouple);
 
+    }
+
+
+    /**
+     * @param couples a list of couples containing emp1 and emp 2 ids and the total time they worked together
+     * <p>Print the solution in the console.</p>
+     */
+    private void printSolution(List<Couple> couples) {
+        couples.sort((o1, o2) -> (int) (o2.getTotalDuration() - o1.getTotalDuration()));
+        var couple = couples.get(0);
+        System.out.printf("Solution: Employee ID #1: %s, Employee ID #2: %s. Days worked together: %s",
+                couple.getFirstEmployeeId(), couple.getSecondEmployeeId(), couple.getTotalDuration());
     }
 }
