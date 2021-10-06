@@ -11,12 +11,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FileParserServiceImpl implements FileParserService {
 
-    private static final List<String> POSSIBLE_FORMATS = List.of("yyyy-MM-dd", "dd-MM-yyyy", "dd/MM/yyyy", "yyyy/MM/dd", "d/M/y", "y/M/d", "d-M-y", "y-M-d");
+    private static final List<String> POSSIBLE_FORMATS =
+            List.of("yyyy-MM-dd", "yyyy-MMM-dd", "dd-MM-yyyy", "dd-MMM-yyyy", "dd/MM/yyyy", "dd/MMM/yyyy", "yyyy/MM/dd", "yyyy/MMM/dd", "d/M/y", "y/M/d", "d-M-y", "y-M-d");
 
     @Override
     public List<Employee> parseEmployees(String path) {
